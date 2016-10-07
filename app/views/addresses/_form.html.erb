@@ -1,0 +1,45 @@
+<%= form_for(@address) do |f| %>
+  <% if @address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contact_id %><br>
+    <%= f.select :contact_id, Contact.pluck(:name, :id), include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :country_id %><br>
+    <%= f.select :country_id, Country.pluck(:name, :id), include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :state_id %><br>
+    <%= f.select :state_id, State.pluck(:name, :id), include_blank: 'Selecciona un estado' %>
+  </div>
+  <div class="field">
+    <%= f.label :street %><br>
+    <%= f.text_field :street %>
+  </div>
+  <div class="field">
+    <%= f.label :zipcode %><br>
+    <%= f.text_field :zipcode %>
+  </div>
+  <div class="field">
+    <%= f.label :address_type %><br>
+    <%= f.number_field :address_type %>
+  </div>
+  <div class="field">
+    <%= f.label :is_default %><br>
+    <%= f.check_box :is_default %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

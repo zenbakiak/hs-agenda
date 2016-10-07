@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Contacts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>avatar</th>
+      <th>contact</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td>
+          <%= image_tag contact.avatar %>
+        </td>
+        <td>
+          <%= contact.name %>
+          <em><%= contact.nickname %></em>
+          <%= contact.email %>
+        </td>
+        <td>
+          <% if contact.addresses.any? %>
+            <%= contact.addresses.first.street %>
+            <%= contact.addresses.first.state.name %>, <%= contact.addresses.first.country.name %>
+            zp <%= contact.addresses.first.zipcode %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Show', contact %>
+          <%= link_to 'Edit', edit_contact_path(contact) %>
+          <%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contact', new_contact_path %>
