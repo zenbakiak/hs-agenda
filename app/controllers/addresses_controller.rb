@@ -1,9 +1,9 @@
 class AddressesController < ApplicationController
+  before_action :set_contact
   before_action :set_address, only: [:show, :edit, :update, :destroy]
 
   # GET /addresses
   def index
-    @addresses = Address.all
   end
 
   # GET /addresses/1
@@ -12,7 +12,7 @@ class AddressesController < ApplicationController
 
   # GET /addresses/new
   def new
-    @address = Address.new
+    @address = @contact.addresses.build
   end
 
   # GET /addresses/1/edit
@@ -21,10 +21,10 @@ class AddressesController < ApplicationController
 
   # POST /addresses
   def create
-    @address = Address.new(address_params)
+    @address = @contact.addresses.build(address_params)
 
     if @address.save
-      redirect_to @address, notice: 'Address was successfully created.'
+      redirect_to contact_addresses_path(@contact, @address), notice: 'Address was successfully created.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class AddressesController < ApplicationController
   # PATCH/PUT /addresses/1
   def update
     if @address.update(address_params)
-      redirect_to @address, notice: 'Address was successfully updated.'
+      redirect_to contact_addresses_path(@contact, @address), notice: 'Address was successfully updated.'
     else
       render :edit
     end
@@ -42,13 +42,17 @@ class AddressesController < ApplicationController
   # DELETE /addresses/1
   def destroy
     @address.destroy
-    redirect_to addresses_url, notice: 'Address was successfully destroyed.'
+    redirect_to contact_addresses_path(@contact), notice: 'Address was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_address
       @address = Address.find(params[:id])
+    end
+
+    def set_contact
+      @contact = Contact.find(params[:contact_id])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :addresses
-  resources :contacts
+  resources :contacts do
+    resources :addresses
+  end
+
   resources :states
   resources :countries
 end

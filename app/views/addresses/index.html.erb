@@ -1,11 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Addresses</h1>
+<h1>Listing Addresses for <%= @contact.name %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Contact</th>
       <th>Country</th>
       <th>State</th>
       <th>Street</th>
@@ -17,18 +16,17 @@
   </thead>
 
   <tbody>
-    <% @addresses.each do |address| %>
+    <% @contact.addresses.each do |address| %>
       <tr>
-        <td><%= address.contact %></td>
-        <td><%= address.country %></td>
-        <td><%= address.state %></td>
+        <td><%= address.country.name %></td>
+        <td><%= address.state.name %></td>
         <td><%= address.street %></td>
         <td><%= address.zipcode %></td>
         <td><%= address.address_type %></td>
         <td><%= address.is_default %></td>
-        <td><%= link_to 'Show', address %></td>
-        <td><%= link_to 'Edit', edit_address_path(address) %></td>
-        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', contact_address_path(@contact, address) %></td>
+        <td><%= link_to 'Edit', edit_contact_address_path(@contact, address) %></td>
+        <td><%= link_to 'Destroy', contact_address_path(@contact, address), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Address', new_address_path %>
+<%= link_to 'New Address', new_contact_address_path(@contact) %>

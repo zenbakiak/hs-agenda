@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
 
   $('.toggle-address').click(function(){
     $(this).parent().toggleClass('open');
