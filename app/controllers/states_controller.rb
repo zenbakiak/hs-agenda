@@ -3,7 +3,16 @@ class StatesController < ApplicationController
 
   # GET /states
   def index
-    @states = State.all
+    if params[:country_id]
+      @states = State.where(country_id: params[:country_id])
+    else
+      @states = State.all
+    end
+
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @states }
+    end
   end
 
   # GET /states/1

@@ -1,2 +1,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.table {
+  td {
+    .address {
+      display: none;
+    }
+
+    &.open {
+      .address {
+        display: block;
+      }
+    }
+  }
+}

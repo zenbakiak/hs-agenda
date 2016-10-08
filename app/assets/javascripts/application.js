@@ -14,3 +14,22 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+
+  $('.toggle-address').click(function(){
+    $(this).parent().toggleClass('open');
+  });
+
+  $('#address_country_id').on('change', function(){
+    $('#address_state_id').html('');
+    $.getJSON('/states.json', { country_id: $(this).val() }, function(states, textStatus) {
+      var opts = ['<option>Selecciona un estado</option>'];
+      $.each(states, function(index, state) {
+        opts.push('<option value="'+state.id+'">'+state.name+'</option>');
+      });
+      $('#address_state_id').html(opts.join(''));
+    });
+  });
+
+});

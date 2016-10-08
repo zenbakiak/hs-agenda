@@ -3,7 +3,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts
   def index
-    @contacts = Contact.includes({addresses: [:country, :state]}).all
+    @contacts = Contact.includes({addresses: [:country, :state]}).all.limit(40)
   end
 
   # GET /contacts/1

@@ -1,4 +1,4 @@
-<%= form_for(@state) do |f| %>
+<%= simple_form_for(@state) do |f| %>
   <% if @state.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@state.errors.count, "error") %> prohibited this state from being saved:</h2>
@@ -11,15 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :country_id %><br>
-    <%= f.text_field :country_id %>
+  <div class="form-groups">
+    <%= f.association :country,
+                      collection: Country.all.order(:name),
+                      label: 'Selecciona un País',
+                      label_html: { class: 'hola' },
+                      input_html: { class: 'form-control'} %>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-groups">
+    <%= f.input :name,
+                label: 'nombre',
+                input_html: { class: 'form-control' } %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%#= f.submit %>
+    <button type='submit' class='btn btn-success btn-lg'> Guardar</button>
   </div>
 <% end %>

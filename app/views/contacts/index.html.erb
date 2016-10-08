@@ -2,7 +2,7 @@
 
 <h1>Listing Contacts</h1>
 
-<table>
+<table class='table'>
   <thead>
     <tr>
       <th>avatar</th>
@@ -16,7 +16,7 @@
     <% @contacts.each do |contact| %>
       <tr>
         <td>
-          <%= image_tag contact.avatar %>
+          <%#= image_tag contact.avatar %>
         </td>
         <td>
           <%= contact.name %>
@@ -25,9 +25,13 @@
         </td>
         <td>
           <% if contact.addresses.any? %>
-            <%= contact.addresses.first.street %>
-            <%= contact.addresses.first.state.name %>, <%= contact.addresses.first.country.name %>
-            zp <%= contact.addresses.first.zipcode %>
+            <button class='toggle-address btn btn-success btn-xs'>Mostrar dirección</button>
+            <div class="address">
+              <%= contact.addresses.first.street %>
+              <%= contact.addresses.first.state.name %>, <%= contact.addresses.first.country.name %>
+              zp <%= contact.addresses.first.zipcode %>
+            </div>
+
           <% end %>
         </td>
         <td>

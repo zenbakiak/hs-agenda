@@ -14,7 +14,6 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails"
 
 
-
 group :development, :test do
   gem 'byebug'
   gem 'awesome_print'
@@ -40,3 +39,9 @@ group :test do
   # gem 'capybara-webkit'
   gem 'rspec-collection_matchers'
 end
+
+
+gem 'simple_form'
+gem 'slim'
+
+gem 'active_model_serializers', '~> 0.10.0'
