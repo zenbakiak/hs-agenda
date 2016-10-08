@@ -13,3 +13,8 @@ usa = FactoryGirl.create(:country, name: 'United States')
   mex.states.create(name: FFaker::AddressMX.state)
   usa.states.create(name: FFaker::AddressUS.state)
 end
+
+50.times do
+  FactoryGirl.create(:address, country: mex, state: mex.states.order('RANDOM()').take)
+  FactoryGirl.create(:address, country: usa, state: usa.states.order('RANDOM()').take)
+end
