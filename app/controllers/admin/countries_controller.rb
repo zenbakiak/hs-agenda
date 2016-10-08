@@ -1,4 +1,4 @@
-class CountriesController < ApplicationController
+class Admin::CountriesController < ApplicationController
   before_action :set_country, only: [:show, :edit, :update, :destroy]
 
   # GET /countries
@@ -24,7 +24,7 @@ class CountriesController < ApplicationController
     @country = Country.new(country_params)
 
     if @country.save
-      redirect_to @country, notice: 'Country was successfully created.'
+      redirect_to [:admin, @country], notice: 'Country was successfully created.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class CountriesController < ApplicationController
   # PATCH/PUT /countries/1
   def update
     if @country.update(country_params)
-      redirect_to @country, notice: 'Country was successfully updated.'
+      redirect_to [:admin, @country], notice: 'Country was successfully updated.'
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class CountriesController < ApplicationController
   # DELETE /countries/1
   def destroy
     @country.destroy
-    redirect_to countries_url, notice: 'Country was successfully destroyed.'
+    redirect_to admin_countries_path, notice: 'Country was successfully destroyed.'
   end
 
   private

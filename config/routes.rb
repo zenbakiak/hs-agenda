@@ -4,5 +4,11 @@ Rails.application.routes.draw do
   end
 
   resources :states
-  resources :countries
+  namespace :admin do
+    resources :countries
+
+    root 'dashboard#index'
+  end
+
+  root 'contacts#index'
 end
